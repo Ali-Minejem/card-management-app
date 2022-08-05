@@ -2,9 +2,17 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import { BsThreeDots } from "react-icons/bs";
-import { FcHighPriority } from "react-icons/fc";
+import {
+  FcHighPriority,
+  FcLowPriority,
+  FcMediumPriority,
+} from "react-icons/fc";
 import DropDown from "../DropDown/DropDown";
 import { setSelectedCardData } from "../../features/selectedTask/selectedTaskSlice";
+
+const MINOR = "minor";
+const MEDIOR = "medior";
+const MAJOR = "major";
 
 function TaskCard(props) {
   const { taskInfos } = props;
@@ -67,10 +75,16 @@ function TaskCard(props) {
       </div>
       <div className="card-footer flex gap-[10px]">
         <div className="font-extralight text-[12px] flex">
-          <FcHighPriority size={17} className=" mr-[8px]" />
-          <span className="underline mr-[5px] font-semibold">
-            Priority:{" "}
-          </span>{" "}
+          {taskPriority?.toLowerCase() === MINOR && (
+            <FcLowPriority size={17} className=" mr-[8px]" />
+          )}
+          {taskPriority?.toLowerCase() === MEDIOR && (
+            <FcMediumPriority size={17} className=" mr-[8px]" />
+          )}
+          {taskPriority?.toLowerCase() === MAJOR && (
+            <FcHighPriority size={17} className=" mr-[8px]" />
+          )}
+          <span className="underline mr-[5px] font-semibold">Priority: </span>{" "}
           {taskPriority}
         </div>
       </div>
