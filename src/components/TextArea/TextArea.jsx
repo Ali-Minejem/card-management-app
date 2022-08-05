@@ -1,0 +1,46 @@
+import React from "react";
+import PropTypes from "prop-types";
+
+function TextArea(props) {
+  const {
+    value,
+    name,
+    id,
+    label,
+    handleChange,
+    readOnly = false,
+    type,
+    classes,
+  } = props;
+  return (
+    <>
+      <label
+        htmlFor={id}
+        className="block text-gray-700 text-sm font-bold mb-2"
+      >
+        {label} <br />
+        <textarea
+          id={id}
+          name={name}
+          type={type}
+          onChange={handleChange}
+          value={value}
+          className={classes}
+          readOnly={readOnly}
+        />
+      </label>
+    </>
+  );
+}
+TextArea.propTypes = {
+  value: PropTypes.string,
+  name: PropTypes.string,
+  id: PropTypes.string,
+  label: PropTypes.string,
+  handleChange: PropTypes.func,
+  readOnly: PropTypes.bool,
+  type: PropTypes.string,
+  classes: PropTypes.string,
+};
+
+export default TextArea;
